@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             var connection : HttpsURLConnection? = null
 
             try {
-                val url = URL("https://run.mocky.io/v3/6997a99e-5bd6-478c-9803-0e10f56dadf9")
+                val url = URL("https://run.mocky.io/v3/2040324a-71cf-47df-8f84-b22ecf735480")
                 connection = url.openConnection() as HttpsURLConnection
                 connection.doInput = true
                 connection.doOutput = true
@@ -92,6 +93,36 @@ class MainActivity : AppCompatActivity() {
 
             if (result != null) {
                 Log.i("JSON RESPONSE RESULT", result)
+
+                val jsonObject = JSONObject(result)
+                val message = jsonObject.optString("message")
+                Log.i("Message", message)
+                val userId = jsonObject.optInt("user_id")
+                Log.i("User Id", "$userId")
+                val name = jsonObject.optString("name")
+                Log.i("Name", "$name")
+                val email = jsonObject.optString("email")
+                Log.i("Email", "$email")
+                val mobile = jsonObject.optLong("mobile")
+                Log.i("Mobile", "$mobile")
+
+                val profileDetailsObject = jsonObject.optJSONObject("profile_details")
+                val isProfileCompleted = profileDetailsObject.optBoolean("is_profile_completed")
+                Log.i("Is Profile Completed", "$isProfileCompleted")
+                val rating = profileDetailsObject.optDouble("rating")
+                Log.i("Rating", "$rating")
+
+                val dataListArray = jsonObject.optJSONArray("data_list")
+                Log.i("Data List Size", "${dataListArray.length()}")
+                for (item in 0 until dataListArray.length()) {
+                    Log.i("Value $item", "${dataListArray[item]}")
+
+                    val dataItemObject : JSONObject = dataListArray[item] as JSONObject
+                    val id = dataItemObject.optInt("id")
+                    Log.i("Id", "$id")
+                    val value = dataItemObject.optString("value")
+                    Log.i("Value", "$value")
+                }
             }
         }
 
