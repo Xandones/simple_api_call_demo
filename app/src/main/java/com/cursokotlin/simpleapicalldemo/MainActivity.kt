@@ -129,36 +129,6 @@ class MainActivity : AppCompatActivity() {
                     Log.i("Value", "${responseData.data_list[item].value}")
                 }
 
-                /*
-                val jsonObject = JSONObject(result)
-                val message = jsonObject.optString("message")
-                Log.i("Message", message)
-                val userId = jsonObject.optInt("user_id")
-                Log.i("User Id", "$userId")
-                val name = jsonObject.optString("name")
-                Log.i("Name", "$name")
-                val email = jsonObject.optString("email")
-                Log.i("Email", "$email")
-                val mobile = jsonObject.optLong("mobile")
-                Log.i("Mobile", "$mobile")
-
-                val profileDetailsObject = jsonObject.optJSONObject("profile_details")
-                val isProfileCompleted = profileDetailsObject.optBoolean("is_profile_completed")
-                Log.i("Is Profile Completed", "$isProfileCompleted")
-                val rating = profileDetailsObject.optDouble("rating")
-                Log.i("Rating", "$rating")
-
-                val dataListArray = jsonObject.optJSONArray("data_list")
-                Log.i("Data List Size", "${dataListArray.length()}")
-                for (item in 0 until dataListArray.length()) {
-                    Log.i("Value $item", "${dataListArray[item]}")
-
-                    val dataItemObject : JSONObject = dataListArray[item] as JSONObject
-                    val id = dataItemObject.optInt("id")
-                    Log.i("Id", "$id")
-                    val value = dataItemObject.optString("value")
-                    Log.i("Value", "$value")
-                } */
             }
         }
 
